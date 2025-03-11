@@ -1,5 +1,6 @@
 --liquibase formatted sql
 
+
 --changeset mate.acamemy:1 labels:0.0.1
 CREATE TABLE Countries (
     ID INT,
@@ -37,4 +38,20 @@ CREATE TABLE ProductInventory (
     FOREIGN KEY (WarehouseID) REFERENCES Warehouses(ID) ON DELETE NO ACTION,
     PRIMARY KEY (ID)
 );
+--rollback DROP TABLE ProductInventory;
+
+
+--changeset mate.acamemy:5 labels:0.0.2
+CREATE TABLE Users (
+    ID INT,
+    FirstName VARCHAR(50),
+    LastName VARCHAR(50),
+    Email VARCHAR(50),
+    PRIMARY KEY (ID)
+);
+--rollback DROP TABLE Users;
+
+--changeset mate.acamemy:6 labels:0.0.3
+CREATE INDEX email_index ON Users(Email);
+
 --rollback DROP TABLE ProductInventory;
